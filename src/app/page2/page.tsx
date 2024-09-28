@@ -1,4 +1,3 @@
-
 interface IBooks {
   // name: string,
   id: number;
@@ -8,17 +7,18 @@ interface IBooks {
   quote: string;
 }
 
-async function Page() {
-  const res = await fetch("https://dummyjson.com/quotes/random", { cache:"no-store" });//Dynamic Page 
+async function Test() {
+  const res = await fetch("https://dummyjson.com/quotes/random", {
+    cache:"force-cache" //Static Page
+  });
   const books: IBooks = await res.json();
 
   return (
-    <div className="items-center flex-col text-xl">
-      
+    <div className="items-center flex-col text-xl" >
         <h1 className="text-center font-semibold text-3xl text-blue-300 p-3">
-          Server Side Dynamic Rendering
+          Server Side Static Rendering
         </h1>
-      
+     
 
       {/* <ul className="p-8">
         {
@@ -32,8 +32,8 @@ async function Page() {
           })
         }
       </ul> */}
-      <p className="text-black font-semibold text-center">{books.author}</p>
+      <p className="text-black font-semibold text-center">{books.quote}</p>
     </div>
   );
 }
-export default Page;
+export default Test;
